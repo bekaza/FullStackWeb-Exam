@@ -1,14 +1,7 @@
 # Full-Stack Web Developer Test
 แบบทดสอบ Full-Stack Web Developer
 
-### Client - Terminal A
-```
-cd client
-npm install
-npm start
-```
-
-### Server - Terminal B
+### Server - Terminal 1
 ```
 cd server
 npm install
@@ -17,3 +10,12 @@ npm start
 
 ### Api Doc
 url: localhost:8081
+
+### Client - Terminal 2
+```
+cd client
+npm install
+npm start
+```
+
+
