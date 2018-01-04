@@ -6,12 +6,13 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import router from './router'
 import Panel from '@/components/globals/Panel'
-
+import Alert from '@/components/globals/Alert'
 Vue.config.productionTip = false
 
 Vue.use(Vuetify)
 
 Vue.component('panel', Panel)
+Vue.component('alert', Alert)
 
 /* eslint-disable no-new */
 new Vue({

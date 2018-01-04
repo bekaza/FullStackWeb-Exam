@@ -6,22 +6,25 @@
 					<alert :alert="alert" :msgErr="msgErr"></alert>
 					<v-layout row>						
 						<v-flex xs4>
-							<v-subheader class="headline">ชื่อ</v-subheader>
+							<v-subheader class="headline">ไอดี</v-subheader>
 						</v-flex>
 						<v-flex xs6>
-							<v-text-field
-							v-model="firstname"
-							name="input-1"
-							label="Firstname"
-							id="txt_firstname"
-							v-on:keyup.enter="searchByFirstname"
-							></v-text-field>							
+							<v-form v-model="valid" v-on:submit.prevent>
+								<v-text-field
+								v-model="userId"
+								name="input-1"
+								label="Id"
+								id="txt_userId"
+								:rules="userIdRules"
+								v-on:keyup.enter="searchById"
+								></v-text-field>
+							</v-form>			
 						</v-flex>
 						<v-flex xs1>
 							<v-btn
 							dark
 							class="teal darken-1"
-							@click="searchByFirstname">
+							@click="searchById">
 							ค้นหา
 							</v-btn>
 						</v-flex>
@@ -44,20 +47,28 @@ export default {
 	},
 	data () {
 		return {
-			firstname: null,
+			valid: false,
+			userIdRules: [ (v) => /^[0-9]*$/gm.test(v) || 'id must be valid' ],
+			userId: null,
 			alert: false,
 			msgErr: ''
 		}
 	},
 	methods: {
-		async searchByFirstname () {
-			try {
-				this.toggleError(false, '')
-				let user = (await UserServices.searchByFirstname(this.firstname)).data
-				// this.users = []
-				this.$emit('showUser', user)
-			} catch (error) {
-				this.toggleError(true, error.response.data.error)
+		allowNumber (event) {
+		},
+		async searchById () {
+			if (this.valid) {
+				try {
+					this.toggleError(false, '')
+					let user = (await UserServices.showById(this.userId)).data
+					// this.users = []
+					this.$emit('showUser', user)
+				} catch (error) {
+					this.toggleError(true, error.response.data.error)
+				}
+			} else {
+				this.toggleError(true, 'id must be valid')
 			}
 		},
 		toggleError (flag, msg) {
@@ -74,4 +85,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>

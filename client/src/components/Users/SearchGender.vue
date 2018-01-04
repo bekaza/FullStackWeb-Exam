@@ -6,22 +6,22 @@
 					<alert :alert="alert" :msgErr="msgErr"></alert>
 					<v-layout row>						
 						<v-flex xs4>
-							<v-subheader class="headline">ชื่อ</v-subheader>
+							<v-subheader class="headline">เพศ</v-subheader>
 						</v-flex>
 						<v-flex xs6>
-							<v-text-field
-							v-model="firstname"
-							name="input-1"
-							label="Firstname"
-							id="txt_firstname"
-							v-on:keyup.enter="searchByFirstname"
-							></v-text-field>							
+							<v-select
+							v-bind:items="items"
+							v-model="selGender"
+							label="Male or Female"
+							single-line
+							bottom
+							></v-select>						
 						</v-flex>
 						<v-flex xs1>
 							<v-btn
 							dark
 							class="teal darken-1"
-							@click="searchByFirstname">
+							@click="searchByGender">
 							ค้นหา
 							</v-btn>
 						</v-flex>
@@ -44,17 +44,17 @@ export default {
 	},
 	data () {
 		return {
-			firstname: null,
+			selGender: null,
 			alert: false,
-			msgErr: ''
+			msgErr: '',
+			items: ['Male', 'Female']
 		}
 	},
 	methods: {
-		async searchByFirstname () {
+		async searchByGender () {
 			try {
 				this.toggleError(false, '')
-				let user = (await UserServices.searchByFirstname(this.firstname)).data
-				// this.users = []
+				let user = (await UserServices.searchByGender(this.selGender.toLowerCase())).data
 				this.$emit('showUser', user)
 			} catch (error) {
 				this.toggleError(true, error.response.data.error)

@@ -3,30 +3,25 @@
 		<v-card flat>
 			<v-card-text>
 				<v-container fluid>
-					<v-alert outline color="error" icon="warning" v-model="alert">
-						{{ msgErr }}
-					</v-alert>
+					<alert :alert="alert" :msgErr="msgErr"></alert>
 					<v-layout row>						
 						<v-flex xs4>
-							<v-subheader class="headline">ค้นหาผู้ใช้งานด้วยไอดี</v-subheader>
+							<v-subheader class="headline">อีเมล์</v-subheader>
 						</v-flex>
 						<v-flex xs6>
-							<v-form v-model="valid">
-								<v-text-field
-								v-model="userId"
-								name="input-1"
-								label="Id"
-								id="txt_userId"
-								:rules="userIdRules"
-								v-on:keyup.enter="searchById"
-								></v-text-field>
-							</v-form>			
+							<v-text-field
+							v-model="email"
+							name="input-1"
+							label="Email"
+							id="txt_email"
+							v-on:keyup.enter="searchByEmail"
+							></v-text-field>							
 						</v-flex>
 						<v-flex xs1>
 							<v-btn
 							dark
 							class="teal darken-1"
-							@click="searchById">
+							@click="searchByEmail">
 							ค้นหา
 							</v-btn>
 						</v-flex>
@@ -49,20 +44,16 @@ export default {
 	},
 	data () {
 		return {
-			valid: false,
-			userIdRules: [ (v) => /^[0-9]*$/gm.test(v) || 'id must be valid' ],
-			userId: null,
+			email: null,
 			alert: false,
 			msgErr: ''
 		}
 	},
 	methods: {
-		allowNumber (event) {
-		},
-		async searchById () {
+		async searchByEmail () {
 			try {
 				this.toggleError(false, '')
-				let user = (await UserServices.showById(this.userId)).data
+				let user = (await UserServices.searchByEmail(this.email)).data
 				// this.users = []
 				this.$emit('showUser', user)
 			} catch (error) {
@@ -83,5 +74,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

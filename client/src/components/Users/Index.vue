@@ -9,8 +9,6 @@
 		</v-flex>
         <v-flex xs8 offset-xs2 style="margin-top:5px;">
 			<component :is='selectedComponent' v-bind:users="users" v-on:showUser="setUser($event)" />
-            <!-- <search-panel v-bind:users="users" v-on:showUser="setUser($event)"></search-panel>
-            <search-first-name v-bind:users="users" v-on:showUser="setUser($event)"></search-first-name> -->
         </v-flex>
 		<v-flex xs12>
 			<user-panel v-bind:users="users"></user-panel>
@@ -19,8 +17,13 @@
 </template>
 
 <script>
-import SearchId from './SearchPanel'
+import UserServices from '@/services/UsersServices'
+import SearchId from './SearchId'
 import SearchFirstName from './SearchFirstName'
+import SearchLastName from './SearchLastName'
+import SearchEmail from './SearchEmail'
+import SearchGender from './SearchGender'
+import SearchAge from './SearchAge'
 import UserPanel from './UserPanel'
 
 export default {
@@ -33,16 +36,25 @@ export default {
 		return {
 			users: [],
 			selectedComponent: SearchId,
-			searchMenus: ['ค้นหาด้วยไอดี', 'ค้นหาด้วยชื่อ', 'ค้นหาด้วยนามสกุล', 'ค้นหาด้วยอีเมล์', 'ค้นหาด้วยเพศ', 'ค้นหาด้วยอายุ']
+			searchMenus: ['ค้นหาด้วยไอดี', 'ค้นหาด้วยชื่อ', 'ค้นหาด้วยนามสกุล', 'ค้นหาด้วยอีเมล์', 'ค้นหาด้วยเพศ', 'ค้นหาด้วยอายุ', 'ผู้ใช้งานทั้งหมด'],
+			arrComp: [SearchId, SearchFirstName, SearchLastName, SearchEmail, SearchGender, SearchAge]
 		}
 	},
 	methods: {
 		setUser (user) {
 			this.users = []
-			this.users.push(user)
+			if (Array.isArray(user)) {
+				this.users = user
+			} else {
+				this.users.push(user)
+			}
 		},
-		selComponent (index) {
-			console.log(index)
+		async selComponent (index) {
+			if (index === (this.searchMenus.length - 1)) {
+				this.users = (await UserServices.showAll()).data
+			} else {
+				this.selectedComponent = this.arrComp[index]
+			}
 		}
 	}
 }

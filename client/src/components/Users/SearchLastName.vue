@@ -6,22 +6,22 @@
 					<alert :alert="alert" :msgErr="msgErr"></alert>
 					<v-layout row>						
 						<v-flex xs4>
-							<v-subheader class="headline">ชื่อ</v-subheader>
+							<v-subheader class="headline">นามสกุล</v-subheader>
 						</v-flex>
 						<v-flex xs6>
 							<v-text-field
-							v-model="firstname"
+							v-model="lastname"
 							name="input-1"
-							label="Firstname"
-							id="txt_firstname"
-							v-on:keyup.enter="searchByFirstname"
+							label="Lastname"
+							id="txt_lastname"
+							v-on:keyup.enter="searchByLastname"
 							></v-text-field>							
 						</v-flex>
 						<v-flex xs1>
 							<v-btn
 							dark
 							class="teal darken-1"
-							@click="searchByFirstname">
+							@click="searchByLastname">
 							ค้นหา
 							</v-btn>
 						</v-flex>
@@ -44,16 +44,16 @@ export default {
 	},
 	data () {
 		return {
-			firstname: null,
+			lastname: null,
 			alert: false,
 			msgErr: ''
 		}
 	},
 	methods: {
-		async searchByFirstname () {
+		async searchByLastname () {
 			try {
 				this.toggleError(false, '')
-				let user = (await UserServices.searchByFirstname(this.firstname)).data
+				let user = (await UserServices.searchByLastname(this.lastname)).data
 				// this.users = []
 				this.$emit('showUser', user)
 			} catch (error) {
