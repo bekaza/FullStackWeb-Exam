@@ -57,6 +57,7 @@ export default {
 		},
 		users: {
 			handler () {
+				this.pagination.page = 1
 				this.loading = true
 				setTimeout(() => {
 					this.loading = false
