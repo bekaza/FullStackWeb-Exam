@@ -1,35 +1,7 @@
 [
   {
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "optional": false,
-            "field": "varname1",
-            "description": "<p>No type.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "varname2",
-            "description": "<p>With type.</p>"
-          }
-        ]
-      }
-    },
-    "type": "",
-    "url": "",
-    "version": "0.0.0",
-    "filename": "./doc/main.js",
-    "group": "G__tab_tracker_master_FullStackTest_server_doc_main_js",
-    "groupTitle": "G__tab_tracker_master_FullStackTest_server_doc_main_js",
-    "name": ""
-  },
-  {
     "type": "get",
-    "url": "/user/age/:age",
+    "url": "/users/age/:age",
     "title": "Get User By age.",
     "version": "0.0.1",
     "name": "GetUserByAge",
@@ -66,7 +38,7 @@
         }
       ]
     },
-    "filename": "./src/routes.js",
+    "filename": "src/routes.js",
     "groupTitle": "User",
     "success": {
       "examples": [
@@ -80,7 +52,7 @@
   },
   {
     "type": "get",
-    "url": "/user/age/:min-:max",
+    "url": "/users/age/:min-:max",
     "title": "Get User By between age.",
     "version": "0.0.1",
     "name": "GetUserByBetweenAge",
@@ -124,7 +96,7 @@
         }
       ]
     },
-    "filename": "./src/routes.js",
+    "filename": "src/routes.js",
     "groupTitle": "User",
     "success": {
       "examples": [
@@ -175,7 +147,7 @@
         }
       ]
     },
-    "filename": "./src/routes.js",
+    "filename": "src/routes.js",
     "groupTitle": "User",
     "success": {
       "examples": [
@@ -226,7 +198,7 @@
         }
       ]
     },
-    "filename": "./src/routes.js",
+    "filename": "src/routes.js",
     "groupTitle": "User",
     "success": {
       "examples": [
@@ -240,7 +212,7 @@
   },
   {
     "type": "get",
-    "url": "/user/gender/:gender",
+    "url": "/users/gender/:gender",
     "title": "Get User By gender.",
     "version": "0.0.1",
     "name": "GetUserByGender",
@@ -281,7 +253,7 @@
         }
       ]
     },
-    "filename": "./src/routes.js",
+    "filename": "src/routes.js",
     "groupTitle": "User",
     "success": {
       "examples": [
@@ -332,7 +304,7 @@
         }
       ]
     },
-    "filename": "./src/routes.js",
+    "filename": "src/routes.js",
     "groupTitle": "User",
     "success": {
       "examples": [
@@ -383,96 +355,13 @@
         }
       ]
     },
-    "filename": "./src/routes.js",
+    "filename": "src/routes.js",
     "groupTitle": "User",
     "success": {
       "examples": [
         {
           "title": "Success-Response:",
           "content": "HTTP/1.1 200 OK\n{\n  \"first_name\": \"trish\",\n  \"last_name\": \"potebury\",\n  \"email\": \"tpotebury0@artisteer.com\",\n  \"gender\": \"female\",\n  \"age\": 19\n}",
-          "type": "json"
-        }
-      ]
-    }
-  },
-  {
-    "type": "get",
-    "url": "/users/search?firstname=&lastname=&email=&age=&gender=",
-    "title": "Get User By Query String.",
-    "version": "0.0.1",
-    "name": "GetUserByQueryString",
-    "group": "User",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "firstname",
-            "description": "<p>Users first_name.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "lastname",
-            "description": "<p>Users last_name.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "email",
-            "description": "<p>Users email.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "allowedValues": [
-              "\"male\"",
-              "\"female\""
-            ],
-            "optional": false,
-            "field": "gender",
-            "description": "<p>Users gender.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "age",
-            "description": "<p>Users age.</p>"
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "UserNotFound",
-            "description": "<p>The age of the User was not found.</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": \"UserNotFound\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "./src/routes.js",
-    "groupTitle": "User",
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n[\n  {\n      \"first_name\": \"trish\",\n      \"last_name\": \"potebury\",\n      \"email\": \"tpotebury0@artisteer.com\",\n      \"gender\": \"female\",\n      \"age\": 19\n  },{\n      \"id\": 78,\n      \"first_name\": \"lars\",\n      \"last_name\": \"mattioli\",\n      \"email\": \"lmattioli25@mit.edu\",\n      \"gender\": \"female\",\n      \"age\": 30\n  }\n]",
           "type": "json"
         }
       ]
